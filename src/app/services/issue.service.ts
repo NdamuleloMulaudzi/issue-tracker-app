@@ -22,5 +22,10 @@ export class IssueService {
     this.issues.push(newIssue);
   }
 
+  getIssues() {
+    return this.issues;
+  }
+
+
 
 }
