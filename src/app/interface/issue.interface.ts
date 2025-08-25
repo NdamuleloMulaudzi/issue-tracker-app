@@ -1,5 +1,5 @@
-export type IssueStatus = 'Open' | 'In Progress' | 'Resolved' | 'Closed';
-export type IssuePriority = 'Low' | 'Medium' | 'Closed';
+export type IssueStatus = 'Open' | 'In Progress' | 'Closed';
+export type IssuePriority = 'Low' | 'Medium' | 'High';
 
 export interface Issue {
   id: string;
