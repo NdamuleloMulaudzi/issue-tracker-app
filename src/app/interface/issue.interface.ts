@@ -2,7 +2,7 @@ export type IssueStatus = 'Open' | 'In Progress' | 'Resolved' | 'Closed';
 export type IssuePriority = 'Low' | 'Medium' | 'Closed';
 
 export interface Issue {
-  id: number;
+  id: string;
   title: string;
   description: string;
   status: IssueStatus;
