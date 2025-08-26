@@ -1,8 +1,32 @@
-<div class="p-4 border rounded-md bg-gray-50">
-    <h3 class="font-semibold text-lg">{{ issue.title }}</h3>
-    <p class="text-sm text-gray-600">{{ issue.description }}</p>
-    <div class="text-xs text-gray-500 mt-2">
-      Status: {{ issue.status }} | Priority: {{ issue.priority }} | Created: {{ issue.createdDate}}
-    </div>
-  </div>
+<div class="p-4 border rounded-md bg-gray-50 space-y-2">
+  <h3 class="font-semibold text-lg">{{ issue.title }}</h3>
+  <p class="text-sm text-gray-600">{{ issue.description }}</p>
+
   
+  <div>
+    <label class="text-sm font-medium text-gray-700">Status</label>
+    <select [(ngModel)]="issue.status"
+            class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500">
+      <option>Open</option>
+      <option>In Progress</option>
+      <option>Resolved</option>
+      <option>Closed</option>
+    </select>
+  </div>
+
+  
+  <div>
+    <label class="text-sm font-medium text-gray-700">Priority</label>
+    <select [(ngModel)]="issue.priority"
+            class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500">
+      <option>Low</option>
+      <option>Medium</option>
+      <option>Closed</option>
+    </select>
+  </div>
+
+
+  <div class="text-xs text-gray-500">
+    Created: {{ issue.createdDate | date:'short' }}
+  </div>
+</div>
