@@ -7,8 +7,25 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class IssueService {
-  constructor() {}
+  constructor() {
+    this.loadIssues()
+  }
   issues: Issue[] = [];
+  private issuesSubject = new BehaviorSubject<Issue[]>([]);
+
+  issues$ = this.issuesSubject.asObservable();
+
+  saveIssue(): void {
+    localStorage.setItem('issues', JSON.stringify(this.issues));
+    this.issuesSubject.next(this.issues);
+  }
+
+   loadIssues(): void {
+    const raw = localStorage.getItem('issues')
+    this.issues = raw ? JSON.parse(raw) : [];
+    this.issuesSubject.next(this.issues);
+
+  }
 
   addIssue(title: string, description: string, priority: Issue['priority']) {
     const newIssue: Issue = {
@@ -20,12 +37,10 @@ export class IssueService {
       createdDate: new Date(),
     };
     this.issues.push(newIssue);
+    this.saveIssue();
   }
 
-  getIssues() {
-    return this.issues;
+  getIssues():Issue[] {
+    return [...this.issues];
   }
-
-
-
 }
