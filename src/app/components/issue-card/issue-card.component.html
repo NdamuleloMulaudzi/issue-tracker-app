@@ -1,32 +1,39 @@
-<div class="p-4 border rounded-md bg-gray-50 space-y-2">
+<div
+  [ngClass]="getCardColor(issue.status)"
+  class="p-4 mb-3 border rounded-md space-y-2"
+>
   <h3 class="font-semibold text-lg">{{ issue.title }}</h3>
   <p class="text-sm text-gray-600">{{ issue.description }}</p>
 
-  
-  <div>
-    <label class="text-sm font-medium text-gray-700">Status</label>
-    <select [(ngModel)]="issue.status"
-            class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500">
-      <option>Open</option>
-      <option>In Progress</option>
-      <option>Resolved</option>
-      <option>Closed</option>
-    </select>
+  <div class="status-priority flex gap-6">
+    <div class="flex gap-1 items-center">
+      <label class="font-medium text-gray-700">Status</label>
+      <select
+        [(ngModel)]="issue.status"
+        [ngClass]="getStatusSelectColor(issue.status)"
+        class="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500"
+      >
+        <option>Open</option>
+        <option>In Progress</option>
+        <option>Closed</option>
+      </select>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <label class="font-medium text-gray-700">Priority</label>
+      <select
+        [(ngModel)]="issue.priority"
+        [ngClass]="getPrioritySelectColor(issue.priority)"
+        class="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500"
+      >
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+    </div>
   </div>
 
-  
-  <div>
-    <label class="text-sm font-medium text-gray-700">Priority</label>
-    <select [(ngModel)]="issue.priority"
-            class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500">
-      <option>Low</option>
-      <option>Medium</option>
-      <option>Closed</option>
-    </select>
-  </div>
-
-
-  <div class="text-xs text-gray-500">
-    Created: {{ issue.createdDate | date:'short' }}
+  <div class="text-xs text-gray-700">
+    Created: {{ issue.createdDate | date : "short" }}
   </div>
 </div>
