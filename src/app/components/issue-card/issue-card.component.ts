@@ -13,8 +13,9 @@ import { IssueService } from '../../services/issue.service';
 export class IssueCardComponent {
   @Input() issue!: Issue;
   @Output() statusChanged = new EventEmitter<{ id: string; status: Issue['status'] }>();
+  @Output() priorityChanged = new EventEmitter<{ id: string; priority: Issue['priority'] }>();
 
-  constructor(private issueService:IssueService){}
+  constructor(){}
 
   onStatusChange(newStatus: Issue['status']) {
     this.statusChanged.emit({ id: this.issue.id, status: newStatus });
@@ -22,6 +23,11 @@ export class IssueCardComponent {
     console.log(this.issue.status)
   }
 
+  onPriorityChange(newPriority: Issue['priority']) {
+    this.priorityChanged.emit({ id: this.issue.id, priority: newPriority });
+    console.log(this.issue.id);
+    console.log(this.issue.priority)
+  }
 
   getCardColor(status: string): string {
     switch (status) {

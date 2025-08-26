@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class IssueService {
   constructor() {
-    this.loadIssues()
+    this.loadIssues();
   }
   issues: Issue[] = [];
   private issuesSubject = new BehaviorSubject<Issue[]>([]);
@@ -20,11 +20,10 @@ export class IssueService {
     this.issuesSubject.next(this.issues);
   }
 
-   loadIssues(): void {
-    const raw = localStorage.getItem('issues')
+  loadIssues(): void {
+    const raw = localStorage.getItem('issues');
     this.issues = raw ? JSON.parse(raw) : [];
     this.issuesSubject.next(this.issues);
-
   }
 
   addIssue(title: string, description: string, priority: Issue['priority']) {
@@ -40,14 +39,22 @@ export class IssueService {
     this.saveIssue();
   }
 
-  getIssues():Issue[] {
+  getIssues(): Issue[] {
     return [...this.issues];
   }
 
   updateStatus(id: string, newStatus: Issue['status']): void {
-    const index = this.issues.findIndex(issue => issue.id === id);
+    const index = this.issues.findIndex((issue) => issue.id === id);
     if (index !== -1) {
       this.issues[index].status = newStatus;
+      this.saveIssue();
+    }
+  }
+
+  updatePriority(id: string, newPriority: Issue['priority']): void {
+    const index = this.issues.findIndex((issue) => issue.id === id);
+    if (index !== -1) {
+      this.issues[index].priority = newPriority;
       this.saveIssue();
     }
   }

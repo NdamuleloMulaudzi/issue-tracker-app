@@ -3,5 +3,6 @@
     *ngFor="let issue of issues"
     [issue]="issue"
     (statusChanged)="onStatusUpdate($event)"
+    (priorityChanged)="onPriorityUpdate($event)"
   ></app-issue-card>
 </div>

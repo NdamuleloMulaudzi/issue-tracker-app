@@ -21,4 +21,8 @@ export class IssueListComponent {
   onStatusUpdate(event: { id: string; status: Issue['status'] }) {
     this.issueService.updateStatus(event.id, event.status);
   }
+
+  onPriorityUpdate(event: { id: string; priority: Issue['priority'] }) {
+    this.issueService.updatePriority(event.id, event.priority);
+  }
 }
