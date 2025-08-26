@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Issue } from '../../interface/issue.interface';
 import { FormsModule, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { IssueService } from '../../services/issue.service';
 
 @Component({
   selector: 'app-issue-card',
@@ -11,6 +12,16 @@ import { CommonModule } from '@angular/common';
 })
 export class IssueCardComponent {
   @Input() issue!: Issue;
+  @Output() statusChanged = new EventEmitter<{ id: string; status: Issue['status'] }>();
+
+  constructor(private issueService:IssueService){}
+
+  onStatusChange(newStatus: Issue['status']) {
+    this.statusChanged.emit({ id: this.issue.id, status: newStatus });
+    console.log(this.issue.id);
+    console.log(this.issue.status)
+  }
+
 
   getCardColor(status: string): string {
     switch (status) {

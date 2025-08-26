@@ -18,4 +18,7 @@ export class IssueListComponent {
   ngOnInit(): void {
     this.issueService.issues$.subscribe((res) => (this.issues = res));
   }
+  onStatusUpdate(event: { id: string; status: Issue['status'] }) {
+    this.issueService.updateStatus(event.id, event.status);
+  }
 }

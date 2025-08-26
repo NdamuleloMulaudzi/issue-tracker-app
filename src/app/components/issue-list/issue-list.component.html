@@ -1,4 +1,7 @@
 <div class="space-y-4 max-w-2xl mx-auto mt-8">
-    <app-issue-card *ngFor="let issue of issues" [issue]="issue"></app-issue-card>
-  </div>
-  
+  <app-issue-card
+    *ngFor="let issue of issues"
+    [issue]="issue"
+    (statusChanged)="onStatusUpdate($event)"
+  ></app-issue-card>
+</div>

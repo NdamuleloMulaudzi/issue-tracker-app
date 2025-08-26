@@ -7,11 +7,11 @@
 
   <div class="status-priority flex gap-6">
     <div class="flex gap-1 items-center">
-      <label class="font-medium text-gray-700">Status</label>
+      <label class="text- font-medium text-gray-700">Status</label>
       <select
         [(ngModel)]="issue.status"
-        [ngClass]="getStatusSelectColor(issue.status)"
-        class="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500"
+        (ngModelChange)="onStatusChange($event)"
+        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500"
       >
         <option>Open</option>
         <option>In Progress</option>
@@ -19,12 +19,11 @@
       </select>
     </div>
 
-    <div class="flex items-center gap-2">
-      <label class="font-medium text-gray-700">Priority</label>
+    <div class="flex">
+      <label class="text-sm font-medium text-gray-700">Priority</label>
       <select
         [(ngModel)]="issue.priority"
-        [ngClass]="getPrioritySelectColor(issue.priority)"
-        class="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500"
+        class="mt-1 w-full rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500"
       >
         <option>Low</option>
         <option>Medium</option>

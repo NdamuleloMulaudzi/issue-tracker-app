@@ -43,4 +43,12 @@ export class IssueService {
   getIssues():Issue[] {
     return [...this.issues];
   }
+
+  updateStatus(id: string, newStatus: Issue['status']): void {
+    const index = this.issues.findIndex(issue => issue.id === id);
+    if (index !== -1) {
+      this.issues[index].status = newStatus;
+      this.saveIssue();
+    }
+  }
 }
