@@ -1,8 +1,21 @@
 <div class="space-y-4 max-w-2xl mx-auto mt-8">
-  <app-issue-card
-    *ngFor="let issue of issues"
-    [issue]="issue"
-    (statusChanged)="onStatusUpdate($event)"
-    (priorityChanged)="onPriorityUpdate($event)"
-  ></app-issue-card>
+
+  <app-filter-controls />
+  <div class="max-h-[500px] overflow-y-auto space-y-4">
+    <ng-container *ngIf="issues.length > 0; else noIssues">
+      <app-issue-card
+        *ngFor="let issue of issues"
+        [issue]="issue"
+        (statusChanged)="onStatusUpdate($event)"
+        (priorityChanged)="onPriorityUpdate($event)"
+      ></app-issue-card>
+    </ng-container>
+
+    
+    <ng-template #noIssues>
+      <p class="text-center text-gray-500 text-lg italic">
+        No issues yet. Create your first issue!
+      </p>
+    </ng-template>
+  </div>
 </div>

@@ -1,0 +1,55 @@
+<div class="flex flex-wrap items-center gap-2 p-3 border rounded-lg bg-white shadow-sm">
+
+  <div class="flex items-center px-3 py-2 bg-gray-50 rounded-md w-64">
+    
+    <input
+      type="text"
+      placeholder="Search issues..."
+      class="bg-transparent outline-none flex-1 text-sm"
+      [(ngModel)]="search"
+      (ngModelChange)="onSearchChange($event)"
+    />
+  </div>
+
+
+  <div class="flex items-center px-3 py-2 bg-gray-50 rounded-md">
+    <select
+      class="bg-transparent outline-none text-sm"
+      [(ngModel)]="status"
+      (ngModelChange)="onStatusChange($event)"
+    >
+      <option>All</option>
+      <option>Open</option>
+      <option>In Progress</option>
+      <option>Closed</option>
+    </select>
+  </div>
+
+
+  <div class="px-3 py-2 bg-gray-50 rounded-md">
+    <select
+      class="bg-transparent outline-none text-sm"
+      [(ngModel)]="priority"
+      (ngModelChange)="onPriorityChange($event)"
+    >
+      <option>All</option>
+      <option>Low</option>
+      <option>Medium</option>
+      <option>High</option>
+    </select>
+  </div>
+
+
+  <div class="flex items-center px-3 py-2 bg-gray-50 rounded-md">
+    <select
+      class="bg-transparent outline-none text-sm"
+      [(ngModel)]="sortBy"
+      (ngModelChange)="onSortChange($event)"
+    >
+      <option>Newest</option>
+      <option>Oldest</option>
+      <option>Priority</option>
+    </select>
+  </div>
+
+</div>
