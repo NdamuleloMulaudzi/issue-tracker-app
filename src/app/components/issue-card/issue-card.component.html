@@ -1,41 +1,59 @@
-<div
-  [ngClass]="getCardColor(issue.status)"
-  class="p-4 mb-3 border rounded-md space-y-2"
->
-  <h3 class="font-semibold text-lg">{{ issue.title }}</h3>
-  <p class="text-sm text-gray-600 break-words">{{ issue.description }}</p>
+<div class="flex mb-3">
+  <!-- Left colored stripe -->
+  <div [ngClass]="getStripeColor(issue.status)" class="w-2 rounded-l-md"></div>
 
-  <div class="text-xs text-gray-700">
-    Created: {{ issue.createdDate | date : 'short' }}
-  </div>
+  <!-- Main card content -->
+  <div
+    [ngClass]="getCardColor(issue.status)"
+    class="flex-1 p-4 border rounded-r-md space-y-2"
+  >
+    <h3 class="font-semibold text-lg">{{ issue.title }}</h3>
+    <p class="text-sm text-gray-600 break-words">{{ issue.description }}</p>
 
-  <div class="status-priority flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2">
-    <!-- Status -->
-    <div class="flex flex-col sm:flex-row gap-1 sm:items-center w-full sm:w-auto">
-      <label class="font-medium text-gray-700 min-w-[70px]">Status</label>
-      <select
-        [(ngModel)]="issue.status"
-        (ngModelChange)="onStatusChange($event)"
-        class="mt-1 sm:mt-0 w-full sm:w-auto rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500"
-      >
-        <option>Open</option>
-        <option>In Progress</option>
-        <option>Closed</option>
-      </select>
+    <div class="text-xs text-gray-700">
+      Created: {{ issue.createdDate | date : "short" }}
     </div>
 
-    <!-- Priority -->
-    <div class="flex flex-col sm:flex-row gap-1 sm:items-center w-full sm:w-auto">
-      <label class="font-medium text-gray-700 min-w-[70px]">Priority</label>
-      <select
-        [(ngModel)]="issue.priority"
-        (ngModelChange)="onPriorityChange($event)"
-        class="mt-1 sm:mt-0 w-full sm:w-auto rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500"
+    <div class="status-priority flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2">
+      <div
+        class="flex flex-col sm:flex-row gap-1 sm:items-center w-full sm:w-auto"
       >
-        <option>Low</option>
-        <option>Medium</option>
-        <option>High</option>
-      </select>
+        <label
+          [ngClass]="getStatusLabelColor(issue.status)"
+          class="px-2 py-1 rounded font-medium text-sm min-w-[70px] text-center"
+        >
+          Status
+        </label>
+        <select
+          [(ngModel)]="issue.status"
+          (ngModelChange)="onStatusChange($event)"
+          class="mt-1 sm:mt-0 w-full sm:w-auto rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500 text-sm"
+        >
+          <option>Open</option>
+          <option>In Progress</option>
+          <option>Closed</option>
+        </select>
+      </div>
+
+      <div
+        class="flex flex-col sm:flex-row gap-1 sm:items-center w-full sm:w-auto"
+      >
+        <label
+          [ngClass]="getPriorityLabelColor(issue.priority)"
+          class="px-2 py-1 rounded font-medium text-sm min-w-[70px] text-center"
+        >
+          Priority
+        </label>
+        <select
+          [(ngModel)]="issue.priority"
+          (ngModelChange)="onPriorityChange($event)"
+          class="mt-1 sm:mt-0 w-full sm:w-auto rounded-md border border-gray-300 bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500 text-sm"
+        >
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
+      </div>
     </div>
   </div>
 </div>

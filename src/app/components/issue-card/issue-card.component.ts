@@ -42,30 +42,48 @@ export class IssueCardComponent {
     }
   }
 
-  getStatusSelectColor(status: string): string {
+  getStripeColor(status: string): string {
     switch (status) {
       case 'Open':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-600';
       case 'In Progress':
-        return 'bg-orange-100 text-orange-800';
+        return 'bg-orange-600';
       case 'Closed':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-600';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-400';
     }
   }
   
-  getPrioritySelectColor(priority: string): string {
-    switch (priority) {
-      case 'Low':
-        return 'bg-gray-100 text-gray-700';
-      case 'Medium':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'High':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
+
+getStatusLabelColor(status: string): string {
+  switch (status) {
+    case 'Open':
+      return 'text-blue-600 bg-blue-200';
+    case 'In Progress':
+      return 'text-orange-600 bg-orange-200';
+    case 'Closed':
+      return 'text-green-600 bg-green-200';
+    default:
+      return 'text-gray-700 bg-gray-200';
   }
+}
+
+
+getPriorityLabelColor(priority: string): string {
+  switch (priority) {
+    case 'High':
+      return 'text-red-600 bg-red-100';
+    case 'Medium':
+      return 'text-orange-600 bg-orange-100';
+    case 'Low':
+    default:
+      return 'text-gray-700 bg-gray-100';
+  }
+}
+
+  
+  
+ 
   
 }
